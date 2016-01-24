@@ -1,5 +1,7 @@
 package org.gehennas.dockerfileplugin.editors;
 
+import org.eclipse.jface.text.DefaultIndentLineAutoEditStrategy;
+import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextDoubleClickStrategy;
 import org.eclipse.jface.text.TextAttribute;
@@ -39,6 +41,11 @@ public class DockerFileConfiguration extends SourceViewerConfiguration {
 			instructionScanner.setDefaultReturnToken(new Token (new TextAttribute(colorManager.getColor(DockerFileColorConstants.ARGS))));
 		}
 		return instructionScanner;
+	}
+	
+	public IAutoEditStrategy[] getAutoEditStrategies(ISourceViewer sourceViewer, String contentType) {
+		IAutoEditStrategy strategy= (IDocument.DEFAULT_CONTENT_TYPE.equals(contentType) ? new DockerFileTabulationStrategy() : new DefaultIndentLineAutoEditStrategy());
+		return new IAutoEditStrategy[] { strategy };
 	}
 	
 	public IPresentationReconciler getPresentationReconciler(ISourceViewer sourceViewer) {
