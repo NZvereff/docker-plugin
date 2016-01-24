@@ -11,7 +11,7 @@ public class DockerFileEditor extends TextEditor {
 		super();
 		colorManager = new ColorManager();
 		setSourceViewerConfiguration(new DockerFileConfiguration(colorManager));
-		setDocumentProvider(new DockerFileDocumentProvider());
+		setDocumentProvider(new ExternalDockerFileDocumentProvider());
 	}
 	public void dispose() {
 		colorManager.dispose();

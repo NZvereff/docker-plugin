@@ -7,6 +7,7 @@
       <editor
             class="org.gehennas.dockerfileplugin.editors.DockerFileEditor"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            default="true"
             filenames="Dockerfile"
             icon="icons/sample.gif"
             id="org.gehennas.dockerfileplugin.editors.DockerFileEditor"
