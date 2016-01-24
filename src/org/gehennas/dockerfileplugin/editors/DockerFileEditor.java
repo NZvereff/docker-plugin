@@ -1,6 +1,7 @@
 package org.gehennas.dockerfileplugin.editors;
 
 import org.eclipse.ui.editors.text.TextEditor;
+import org.gehennas.dockerfileplugin.editors.util.ColorManager;
 
 public class DockerFileEditor extends TextEditor {
 

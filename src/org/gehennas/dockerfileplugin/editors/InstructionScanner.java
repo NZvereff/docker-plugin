@@ -10,10 +10,13 @@ import org.eclipse.jface.text.rules.SingleLineRule;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.rules.WhitespaceRule;
 import org.eclipse.jface.text.rules.WordRule;
+import org.gehennas.dockerfileplugin.editors.util.ColorManager;
 import org.gehennas.dockerfileplugin.editors.util.DockerFileColorConstants;
 import org.gehennas.dockerfileplugin.editors.util.DockerFileWhitespaceDetector;
+import org.gehennas.dockerfileplugin.editors.util.Instruction;
+import org.gehennas.dockerfileplugin.editors.util.InstructionDetector;
 
-public class InstructionScanner extends RuleBasedScanner {
+public class InstructionScanner extends RuleBasedScanner { //Scanner for highlighting instructions, strings and environment variables
 	public InstructionScanner(ColorManager manager) {
 		IToken instruction = new Token (new TextAttribute(manager.getColor(DockerFileColorConstants.INSTRUCTION))); //Instruction keywords
 		IToken string = new Token (new TextAttribute(manager.getColor(DockerFileColorConstants.STRING))); //Strings
@@ -28,6 +31,8 @@ public class InstructionScanner extends RuleBasedScanner {
 		}
 		
 		ruleList.add(instRule);
+		
+		//Other Rules
 		ruleList.add(new SingleLineRule("\"", "\"", string, '\\'));
 		ruleList.add(new SingleLineRule("'", "'", string, '\\'));
 		ruleList.add(new SingleLineRule("${", "}", env_var));

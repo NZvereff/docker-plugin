@@ -10,7 +10,7 @@ import org.eclipse.jface.text.rules.Token;
 
 public class DockerFilePartitionScanner extends RuleBasedPartitionScanner{
 	
-	public final static String DF_COMMENT = "__df_comment";
+	public final static String DF_COMMENT = "__df_comment"; //Tagging comment partitions
 	
 	public DockerFilePartitionScanner() {
 		

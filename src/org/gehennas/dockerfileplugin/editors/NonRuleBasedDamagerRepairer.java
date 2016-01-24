@@ -94,6 +94,7 @@ public class NonRuleBasedDamagerRepairer //Default class from template
 				return new Region(start, end - start);
 
 			} catch (BadLocationException x) {
+				x.printStackTrace();
 			}
 		}
 

@@ -6,7 +6,7 @@ import org.eclipse.jface.text.IDocumentPartitioner;
 import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.ui.editors.text.FileDocumentProvider;
 
-public class DockerFileDocumentProvider extends FileDocumentProvider{
+public class DockerFileDocumentProvider extends FileDocumentProvider{ //This file provider uses the only "Comment" partition
 	
 	protected IDocument createDocument(Object element) throws CoreException {
 		IDocument document = super.createDocument(element);
