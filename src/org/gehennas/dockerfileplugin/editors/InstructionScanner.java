@@ -1,6 +1,7 @@
 package org.gehennas.dockerfileplugin.editors;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.rules.IRule;
@@ -22,7 +23,7 @@ public class InstructionScanner extends RuleBasedScanner { //Scanner for highlig
 		IToken string = new Token (new TextAttribute(manager.getColor(DockerFileColorConstants.STRING))); //Strings
 		IToken env_var = new Token (new TextAttribute(manager.getColor(DockerFileColorConstants.ENV_VAR))); //Environment variables
 		
-		ArrayList<IRule> ruleList = new ArrayList<IRule>();
+		List<IRule> ruleList = new ArrayList<IRule>();
 		
 		//Rules for instruction keywords.
 		WordRule instRule = new WordRule(new InstructionDetector()); 

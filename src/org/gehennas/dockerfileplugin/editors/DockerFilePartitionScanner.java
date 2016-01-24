@@ -1,6 +1,7 @@
 package org.gehennas.dockerfileplugin.editors;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.jface.text.rules.EndOfLineRule;
 import org.eclipse.jface.text.rules.IPredicateRule;
@@ -16,7 +17,7 @@ public class DockerFilePartitionScanner extends RuleBasedPartitionScanner{
 		
 		IToken comment = new Token(DF_COMMENT);
 		
-		ArrayList<IPredicateRule> ruleList = new ArrayList<IPredicateRule>();
+		List<IPredicateRule> ruleList = new ArrayList<IPredicateRule>(); //Just in case we'll need to add more partitions in the future
 		
 		ruleList.add(new EndOfLineRule("#",comment));			
 				
