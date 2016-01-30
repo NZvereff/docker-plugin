@@ -34,19 +34,20 @@ public class InstructionScanner extends RuleBasedScanner {
 		IToken instruction = new Token (new TextAttribute(manager.getColor(DockerFileColorConstants.INSTRUCTION))); //Instruction keywords
 		IToken string = new Token (new TextAttribute(manager.getColor(DockerFileColorConstants.STRING))); //Strings
 		IToken env_var = new Token (new TextAttribute(manager.getColor(DockerFileColorConstants.ENV_VAR))); //Environment variables
+		IToken not_the_keyword = new Token (new TextAttribute(manager.getColor(DockerFileColorConstants.ARGS))); //default color if not a keyword
 		List<IRule> ruleList = new ArrayList<IRule>();
 		IRule[] rules;
-		
-		WordRule instRule = new WordRule(new InstructionDetector()); 
-		for (Instruction i: Instruction.values()) {
-			instRule.addWord(i.name(), instruction);
-		}
-		ruleList.add(instRule);
+			
 		ruleList.add(new SingleLineRule("\"", "\"", string, '\\'));
 		ruleList.add(new SingleLineRule("'", "'", string, '\\'));
 		ruleList.add(new SingleLineRule("${", "}", env_var));
 		ruleList.add(new SingleLineRule("$", " ", env_var));
 		ruleList.add(new WhitespaceRule(new DockerFileWhitespaceDetector()));
+		WordRule instRule = new WordRule(new InstructionDetector(), not_the_keyword); 
+		for (Instruction i: Instruction.values()) {
+			instRule.addWord(i.name(), instruction);
+		}
+		ruleList.add(instRule);
 		rules = new IRule[ruleList.size()]; 
 		ruleList.toArray(rules);
 		setRules(rules);
