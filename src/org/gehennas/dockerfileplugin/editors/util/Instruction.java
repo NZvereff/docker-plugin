@@ -1,6 +1,12 @@
 package org.gehennas.dockerfileplugin.editors.util;
 
-public enum Instruction { //List of all available instructions
+/**
+ * Storage for instruction keywords
+ * 
+ * @author Nikita Zverev
+ * @version 1.0.1
+ */
+public enum Instruction {
 	FROM,
 	MAINTANER,
 	RUN,

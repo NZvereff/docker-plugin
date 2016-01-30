@@ -2,7 +2,13 @@ package org.gehennas.dockerfileplugin.editors.util;
 
 import org.eclipse.jface.text.rules.IWordDetector;
 
-public class InstructionDetector implements IWordDetector{ //Detects Dockerfile instructions
+/**
+ * WordDetector implementation for instruction keywords (Uppercase letters)
+ * 
+ * @author Nikita Zverev
+ * @version 1.0.1
+ */
+public class InstructionDetector implements IWordDetector{
 
 	@Override
 	public boolean isWordStart(char c) {

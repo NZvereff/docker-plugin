@@ -17,30 +17,37 @@ import org.gehennas.dockerfileplugin.editors.util.DockerFileWhitespaceDetector;
 import org.gehennas.dockerfileplugin.editors.util.Instruction;
 import org.gehennas.dockerfileplugin.editors.util.InstructionDetector;
 
-public class InstructionScanner extends RuleBasedScanner { //Scanner for highlighting instructions, strings and environment variables
+/**
+ * Rule-based scanner for syntax highlighting in instructions. Finds instruction keywords, environment variables and strings.
+ * 
+ * @author Gehennas
+ * @version 1.0.1
+ */
+public class InstructionScanner extends RuleBasedScanner {
+	
+	/**
+	 * Creates a new scanner, and initializes string, keyword and environment variable rules
+	 * 
+	 * @param manager color manager used for highlighting
+	 */
 	public InstructionScanner(ColorManager manager) {
 		IToken instruction = new Token (new TextAttribute(manager.getColor(DockerFileColorConstants.INSTRUCTION))); //Instruction keywords
 		IToken string = new Token (new TextAttribute(manager.getColor(DockerFileColorConstants.STRING))); //Strings
 		IToken env_var = new Token (new TextAttribute(manager.getColor(DockerFileColorConstants.ENV_VAR))); //Environment variables
-		
 		List<IRule> ruleList = new ArrayList<IRule>();
+		IRule[] rules;
 		
-		//Rules for instruction keywords.
 		WordRule instRule = new WordRule(new InstructionDetector()); 
 		for (Instruction i: Instruction.values()) {
 			instRule.addWord(i.name(), instruction);
 		}
-		
 		ruleList.add(instRule);
-		
-		//Other Rules
 		ruleList.add(new SingleLineRule("\"", "\"", string, '\\'));
 		ruleList.add(new SingleLineRule("'", "'", string, '\\'));
 		ruleList.add(new SingleLineRule("${", "}", env_var));
 		ruleList.add(new SingleLineRule("$", " ", env_var));
 		ruleList.add(new WhitespaceRule(new DockerFileWhitespaceDetector()));
-		
-		IRule[] rules = new IRule[ruleList.size()]; 
+		rules = new IRule[ruleList.size()]; 
 		ruleList.toArray(rules);
 		setRules(rules);
 	}

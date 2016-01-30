@@ -13,7 +13,7 @@ import org.eclipse.jface.text.presentation.IPresentationRepairer;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.swt.custom.StyleRange;
 
-public class NonRuleBasedDamagerRepairer //Default class from template
+public class NonRuleBasedDamagerRepairer //TODO: Fix this shit
 	implements IPresentationDamager, IPresentationRepairer {
 
 	/** The document this object works on */
