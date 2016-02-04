@@ -111,7 +111,7 @@ public class DockerFileDoubleClickStrategy implements ITextDoubleClickStrategy {
 			selectRange(startPos, endPos);
 			return true;
 
-		} catch (BadLocationException x) {
+		} catch (BadLocationException x) { //TODO: Do something with exception
 		}
 
 		return false;

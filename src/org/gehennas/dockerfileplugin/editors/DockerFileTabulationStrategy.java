@@ -17,12 +17,12 @@ public class DockerFileTabulationStrategy extends DefaultIndentLineAutoEditStrat
 	/* Inherited from DefaultIndentLineAutoEditStrategy. Checks if the line ends with backslash */
 	public void customizeDocumentCommand(IDocument document, DocumentCommand command) {
 		if (command.length == 0 && command.text != null && TextUtilities.endsWith(document.getLegalLineDelimiters(), command.text) != -1) {
-			TabAfterBackSlash(document, command);
+			tabAfterBackSlash(document, command);
 		}
 	}
 	
 	/* Adds additional tabulation to command */
-	private void TabAfterBackSlash(IDocument document, DocumentCommand command) {
+	private void tabAfterBackSlash(IDocument document, DocumentCommand command) {
 		if (command.offset == -1 || document.getLength() == 0)
 			return;
 		try {
